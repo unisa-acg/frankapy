@@ -1700,7 +1700,7 @@ class FrankaArm:
         """
         self.goto_gripper(FC.GRIPPER_WIDTH_MAX, block=block, skill_desc=skill_desc)
 
-    def close_gripper(self, grasp=True, block=True, skill_desc='CloseGripper'):
+    def close_gripper(self, grasp=True, block=True, force=FC.GRIPPER_MAX_FORCE, skill_desc='CloseGripper'):
         """
         Closes the gripper as much as possible
 
@@ -1715,7 +1715,7 @@ class FrankaArm:
                 Skill description to use for logging on control-pc.
         """
         self.goto_gripper(FC.GRIPPER_WIDTH_MIN, grasp=grasp,
-                          force=FC.GRIPPER_MAX_FORCE if grasp else None,
+                          force=force if grasp else None,
                           block=block, skill_desc=skill_desc)
 
     def home_gripper(self, block=True, skill_desc='HomeGripper'):
@@ -2319,7 +2319,7 @@ class FrankaArm:
 
     def is_joints_in_collision_with_boxes(self, joints=None, boxes=None):
         """ 
-        Checks if the given joint configuration is in collision with boxes
+        Checks if the given joint configuration  boxes
         or the workspace walls.
 
         Parameters
